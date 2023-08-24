@@ -1,0 +1,6 @@
+วิธีที่ 1
+{{ form.submit(class='btn btn-success') }}
+ใส่ class เข้าไปในวงเล็บได้เลย
+
+วิธีที่ 2
+pip install flask-bootstrap

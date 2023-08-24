@@ -1,0 +1,14 @@
+{% extends 'bar.html' %}
+{% block content %}
+     <div class="container bg-white card p-3">
+        <form method="post">
+            {{form.hidden_tag()}}
+
+            {{form.name.label}}{{form.name(class='form-control my-2',placeholder="ชื่อของคุณ name")}}
+            {{form.address.label}}{{form.address(class='form-control my-2',placeholder="ที่อยู่ address")}}
+            {{form.salary.label}}{{form.salary(class='form-control my-2',placeholder="เงินเดือน salary")}}
+            {{form.submit(class='btn btn-success my-3 form-control')}}
+        </form>
+     </div>
+
+{% endblock %}

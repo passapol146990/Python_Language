@@ -1,0 +1,3 @@
+git remote add origin git@github.com:passapol146990/flask-test.git
+git branch -M main
+git push -u origin main

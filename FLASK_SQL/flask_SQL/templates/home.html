@@ -1,0 +1,84 @@
+{% extends 'bar.html' %}
+{% block content %}
+<div class="">
+    <div class="alert alert-info" role="alert">
+        <div class="container">
+            <h1><li>Home</li></h1>
+            <p>แสดงข้อมูล</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card p-5 bg-dark text-center">
+        <table class="table table-bordered">
+            <thead class="bg-white">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>address</th>
+                    <th>Salary</th>
+                    <th>Menu</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                {% for i in data %}
+                <tr>
+                    <th>{{i.0}}</th>
+                    <th>{{i.1}}</th>
+                    <th>{{i.2}}</th>
+                    <th>{{i.3}}</th>
+                    <th>
+                        <a class="btn btn-outline-warning btn-xs" data-bs-toggle="modal" data-bs-target="#modaledit{{i.0}}">Edit</a>
+                        <a href="/delete/{{i.0}}" class="btn btn-outline-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลใช่หรือไม่')">Delete</a>
+                    </th>
+                </tr>
+                <div id="modaledit{{i.0}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">อัพเดทข้อมูล</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/update" method="post" style="text-align: start;">
+                                    <div class="input-group my-2">
+                                        <div class="input-group-text">
+                                            <label>ชื่อ</label>
+                                        </div>
+                                        <input type="hidden" name="id" value="{{i.0}}">
+                                        <input type="text" class="form-control" name="name" value="{{i.1}}">
+                                    </div>
+                                    <div class="input-group my-2">
+                                        <div class="input-group-text">
+                                            <label>ที่อยู่</label>
+                                        </div>
+                                        <input type="text" class="form-control" name="address" value="{{i.2}}">
+                                    </div>
+                                    <div class="input-group my-2">
+                                        <div class="input-group-text">
+                                            <label>เงินเดือน</label>
+                                        </div>
+                                        <input type="text" class="form-control" name="salary" value="{{i.3}}">
+                                    </div>
+                                    <div class="input-group my-2">
+                                        <button type="submit" class="btn btn-primary form-control my-3">อัพเดทข้อมูล</button>
+                                    </div>
+                                </form>
+                                <div class="modal-footer"></div>                           </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="bg-white">
+        {{data}}
+    </div>
+    
+
+    </div>
+</div>
+{% endblock %}

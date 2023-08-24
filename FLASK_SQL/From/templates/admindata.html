@@ -1,0 +1,32 @@
+{% extends "laout.html" %}
+{% block conten %}
+<div>
+    {% if data.name %}
+        <div class="container" align="center">
+            <h1>ขอบคุณ {{data.name}}</h1>
+            <h5>เราจะนำคำแนะนำของท่านไปพิจารณาและแก้ไข</h5>
+        </div>
+        <hr>
+        <div class="container">
+            <h2>รายละเอียดคำร้อง</h2>
+            <div class="container">
+                <h4>ชื่อ:{{data.name}} <br>อายุ:{{data.age}}<br>คำร้อง:{{data.description}}</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="container" align="center">
+            <form action="{{url_for('index')}}" method="">
+                <input type="submit" value="เสร็จสิ้น" class="btn btn-success">
+            </form>
+        </div>
+    {% else %}
+        <div class="container">
+            <h1>กรุณากรอกข้อมูลให้ครบ</h1>
+            <form action="{{url_for('admin')}}">
+                <input type="submit" value="กลับไปที่หน้ากรอกข้อมูล" class="btn btn-success">
+            </form>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

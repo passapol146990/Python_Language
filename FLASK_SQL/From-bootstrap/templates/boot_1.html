@@ -1,0 +1,38 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'bar.html' %}
+
+{% block content %}
+
+<div class="container my-3">
+    {% for massage in get_flashed_messages() %}
+        
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{massage}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    {% endfor %}
+
+    <form method="post">
+        <!-- สำคัญ -->
+        {{ form.hidden_tag() }}
+        <!-- ใส่่ชื่อ -->
+        {{ form.text.label }}  {{ form.text(class='form-control') }}
+        
+        <!-- เพศ --><br>
+        {{ form.radio.label }} {{ form.radio() }}
+        <!-- เลือกช้อย -->
+        {{ form.select.label }} {{ form.select(class='form-control') }}
+        <!-- ยอมรับ --><br>
+        {{ form.bool }}{{ form.bool.label}}
+        <!-- กดส่ง --> <br>
+        {{ form.button(class='btn btn-success') }}
+    </form>
+    <hr>
+    Your name is : <b>{{ session['name'] }}</b>
+    คุณยอมรับเงื่อนไขหรือไม่ : {{ session['bool'] }}
+    เพศ : {{ session['gender'] }}
+    ความสามารถ : {{ session['select'] }}
+    ที่อยู่ : {{ session['address'] }}
+</div>
+{% endblock %}

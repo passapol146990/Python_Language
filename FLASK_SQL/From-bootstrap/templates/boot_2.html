@@ -1,0 +1,36 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'bar.html' %}
+
+{%  block title %}
+auto-form
+{% endblock %}
+
+{% block content %}
+<div class="container my-3">
+    {% for massage in get_flashed_messages() %}
+        <div class="alert alert-success" role="alert">
+            {{massage}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+
+    {{wtf.quick_form(form)}}
+        <hr>
+    {% if session['name'] %}
+        Your name is : <b>{{ session['name'] }}</b>
+        คุณยอมรับเงื่อนไขหรือไม่ : {{ session['bool'] }}
+        เพศ : {{ session['gender'] }}
+        ความสามารถ : {{ session['select'] }}
+        ที่อยู่ : {{ session['address'] }}
+    {% else %}
+        ...
+    {% endif %}
+</div>
+<script>
+    const btn = document.querySelector('.btn.btn-default')
+    btn.classList.remove('btn-default')
+    btn.classList.add('btn-success')
+</script>
+
+{% endblock %}

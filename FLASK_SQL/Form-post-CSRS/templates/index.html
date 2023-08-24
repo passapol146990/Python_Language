@@ -1,0 +1,34 @@
+{% extends 'bar.html' %}
+{% block content %}
+
+<div class="container my-3">
+    <form method="post">
+        <!-- สำคัญ -->
+        {{ form.hidden_tag() }}
+        <!-- ใส่่ชื่อ -->
+        {{ form.name.label }}  {{ form.name() }}
+        
+        <!-- เพศ --><br>
+        {{ form.radio.label }} {{ form.radio() }}
+        <!-- เลือกช้อย -->
+        {{ form.select.label }} {{ form.select() }}
+        <!-- ยอมรับ --><br>
+        {{ form.bool }}{{ form.bool.label}}
+        <!-- กดส่ง --> <br>
+        {{ form.submit(class='btn btn-success') }}
+    </form>
+</div>
+<hr>
+{% if session['name'] %}
+    Your name is : <b>{{ session['name'] }}</b>
+{% else %}   
+    ไม่พบชื่อของคุณ
+{% endif %}
+
+    คุณยอมรับเงื่อนไขหรือไม่ : {{ session['bool'] }}
+    เพศ : {{ session['gender'] }}
+    ความสามารถ : {{ session['select'] }}
+    ที่อยู่ : {{ session['address'] }}
+
+
+{% endblock %}
